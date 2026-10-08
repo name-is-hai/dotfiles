@@ -1,5 +1,0 @@
-{
-    Terminal: "/usr/bin/ghostty --gtk-single-instance=true",
-    WindowSwitcher: "/home/liam/.local/bin/cosmic-ext-app-switcher",
-    WindowSwitcherPrevious: "/home/liam/.local/bin/cosmic-ext-app-switcher --reverse",
-}
