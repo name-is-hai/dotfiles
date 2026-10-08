@@ -1,0 +1,183 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "markdown_preview": {
+    "font_family": "JetBrainsMono Nerd Font",
+    "code_font_family": "JetBrainsMono Nerd Font",
+  },
+  "lsp_document_colors": "inlay",
+  "code_lens": "on",
+  "inlay_hints": {
+    "show_background": true,
+    "show_value_hints": true,
+    "enabled": true,
+  },
+  "vim": {
+    "toggle_relative_line_numbers": true,
+  },
+  "agent_ui_font_size": 14.0,
+  "ui_font_weight": 300.0,
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 350.0,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "format_on_save": "on",
+  "ssh_connections": [
+    {
+      "host": "kubernetes-the-hardway-aws.devpod",
+      "args": [],
+      "projects": [],
+    },
+    {
+      "host": "fhs.devpod",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/workspace"],
+        },
+      ],
+    },
+    {
+      "host": "sotatek.laptop",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/sotatek/Project/ai-fraud"],
+        },
+        {
+          "paths": ["/home/sotatek/Project/comedi-devops"],
+        },
+        {
+          "paths": ["/home/sotatek/Project/sota-edu-community"],
+        },
+      ],
+    },
+    {
+      "host": "sentinel.devpod",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/workspace"],
+        },
+      ],
+    },
+  ],
+  "use_podman": true,
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": false,
+    "anthropic_retention": false,
+  },
+  "base_keymap": "VSCode",
+  "always_treat_brackets_as_autoclosed": true,
+  "terminal": {
+    "dock": "bottom",
+  },
+  "which_key": {
+    "enabled": true,
+  },
+  "edit_predictions": {
+    "provider": "zed",
+  },
+  "diff_view_style": "split",
+  "project_panel": {
+    "folder_indicator": "icon",
+    "sort_order": "default",
+    "sort_mode": "directories_first",
+    "hide_hidden": false,
+    "hide_root": false,
+    "indent_guides": {
+      "show": "always",
+    },
+    "git_status_indicator": true,
+    "diagnostic_badges": true,
+    "scrollbar": {
+      "horizontal_scroll": true,
+    },
+    "bold_folder_labels": false,
+    "auto_fold_dirs": false,
+    "starts_open": false,
+    "auto_reveal_entries": true,
+    "indent_size": 20.0,
+    "git_status": true,
+    "file_icons": true,
+    "entry_spacing": "standard",
+    "dock": "right",
+  },
+  "outline_panel": {
+    "button": true,
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "right",
+  },
+  "agent": {
+    "button": true,
+    "flexible": false,
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "git_panel": {
+    "commit_title_max_length": 72,
+    "file_icons": true,
+    "fallback_branch_name": "master",
+    "show_count_badge": true,
+    "tree_view": true,
+    "dock": "right",
+  },
+  "cli_default_open_behavior": "existing_window",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  "vim_mode": true,
+  "agent_servers": {},
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_size": 15.0,
+  "buffer_font_size": 15.0,
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "Ayu Dark",
+  },
+  "languages": {
+    "CSharp": {
+      "language_servers": ["roslyn"],
+    },
+  },
+  "lsp": {
+    "roslyn": {
+      "settings": {
+        "csharp|inlay_hints": {
+          "csharp_enable_inlay_hints_for_types": true,
+          "csharp_enable_inlay_hints_for_implicit_variable_types": true,
+        },
+        "csharp|code_style.formatting.indentation_and_spacing": {
+          "tab_width": 2,
+          "indent_size": 2,
+          "indent_style": "tab",
+        },
+        "csharp|code_style.formatting.new_line": {
+          "insert_final_newline": true,
+        },
+        "csharp|formatting": {
+          "dotnet_organize_imports_on_format": true,
+        },
+      },
+    },
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": null,
+    },
+  },
+}

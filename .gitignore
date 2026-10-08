@@ -1,0 +1,6 @@
+.DS_Store
+*.backup-*
+config/zed/settings_backup.json
+config/fcitx5/conf/cached_layouts
+config/fcitx5/conf/clipboard.conf
+config/fcitx5/conf/notifications.conf

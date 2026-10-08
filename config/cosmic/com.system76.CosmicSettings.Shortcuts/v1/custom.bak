@@ -1,0 +1,40 @@
+{
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "v",
+        description: Some("Clip Keep"),
+    ): Spawn("flatpak run io.github.marcelogomes90.cosmic-ext-applet-clip-keep --toggle"),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "s",
+    ): System(Screenshot),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Escape",
+    ): System(Suspend),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Escape",
+    ): System(LockScreen),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "space",
+    ): Disable,
+}

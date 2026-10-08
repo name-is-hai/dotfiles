@@ -1,0 +1,15 @@
+[tools]
+"github:jesseduffield/lazygit" = "latest"
+prek = "latest"
+starship = "latest"
+codex = "latest"
+opencode = "latest"
+agy = "latest"
+gh = "latest"
+fzf = "latest"
+zoxide = "latest"
+bat = "latest"
+eza = "latest"
+ripgrep = "latest"
+tmux = "latest"
+

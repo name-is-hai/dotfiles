@@ -1,0 +1,152 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-w": "workspace::CloseActiveDock",
+    },
+  },
+  {
+    "context": "RulesLibrary",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "Pane",
+    "unbind": {
+      "ctrl-w": [
+        "pane::CloseActiveItem",
+        {
+          "close_pinned": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "SettingsWindow",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "SkillCreator",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "SkillCreator > Editor",
+    "unbind": {
+      "ctrl-w": "workspace::CloseWindow",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-w ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-w ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-w ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-p": "command_palette::Toggle",
+    },
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "space g g": "git_panel::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-g": "git_panel::ToggleFocus",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-shift-d": "debug_panel::Toggle",
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-shift-d": "debug_panel::ToggleFocus",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-?": "agent::Toggle",
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "p": ["vim::Paste", { "preserve_clipboard": true }],
+    },
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "space e": "project_panel::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space ,": ["tab_switcher::Toggle", { "select_last": true }],
+      "space c f": "editor::Format",
+      "space r n": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions",
+      "space g g": "git_panel::Toggle",
+      "space h p": "editor::ToggleSelectedDiffHunks",
+      "space t h": "editor::ToggleInlayHints",
+      "space t d": "editor::ToggleInlineDiagnostics",
+    },
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "space e": "project_panel::Toggle",
+    },
+  },
+  {
+    "context": "EmptyPane",
+    "bindings": {
+      "space e": "project_panel::Toggle",
+    },
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "enter": ["workspace::SendKeystrokes", "enter space e"],
+      "o": ["workspace::SendKeystrokes", "enter space e"],
+      "a": "project_panel::NewFile",
+    },
+  },
+]
