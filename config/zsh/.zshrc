@@ -13,7 +13,14 @@ done
 
 _zshrc_dir="$(cd -P "$(dirname "$_zshrc_path")" >/dev/null 2>&1 && pwd)"
 
-export ZSH_CONFIG_DIR="${ZSH_CONFIG_DIR:-$_zshrc_dir}"
+# The installer copies this entry point to ~/.zshrc but keeps the modular
+# snippets under ~/.config/zsh. A symlinked entry point still resolves beside
+# its snippets; a copied one uses the XDG location below.
+if [[ -d "$_zshrc_dir/zshrc.d" ]]; then
+  export ZSH_CONFIG_DIR="${ZSH_CONFIG_DIR:-$_zshrc_dir}"
+else
+  export ZSH_CONFIG_DIR="${ZSH_CONFIG_DIR:-$HOME/.config/zsh}"
+fi
 
 if [[ -d "$ZSH_CONFIG_DIR/zshrc.d" ]]; then
   for file in "$ZSH_CONFIG_DIR"/zshrc.d/*.zsh(N); do
