@@ -12,6 +12,14 @@ The editable `config/` tree holds the directly portable files. `archive/cosmkit-
 
 Existing files are left alone. Use `./install.sh --force` to replace them after a timestamped backup.
 
+Install or repair Neovim's complete toolchain with:
+
+```bash
+./scripts/bootstrap-nvim.sh
+```
+
+See [Neovim setup](config/nvim/README.md) for prerequisites and existing-config backups.
+
 ## Developer tools with Mise
 
 Install [Mise](https://mise.jdx.dev/) through your distribution or its official installer, then run:

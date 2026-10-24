@@ -26,7 +26,7 @@ require("snacks").setup({
   },
 
   image = {
-    enabled = true,
+    enabled = vim.fn.executable("magick") == 1 or vim.fn.executable("convert") == 1,
   },
 
   indent = {

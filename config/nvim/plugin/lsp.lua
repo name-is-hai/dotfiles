@@ -7,16 +7,8 @@ vim.pack.add({
 require("mason").setup()
 
 require("mason-lspconfig").setup({
-  ensure_installed = {
-    "bashls",
-    "yamlls",
-    "ansiblels",
-    "terraformls",
-    "rust_analyzer",
-    "dockerls",
-    "docker_compose_language_service",
-    "gh_actions_ls",
-  },
+  -- The bootstrap installs these synchronously with their prerequisites.
+  ensure_installed = {},
 
   automatic_enable = true,
 })
