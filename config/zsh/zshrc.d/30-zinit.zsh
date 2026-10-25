@@ -7,9 +7,6 @@ fi
 
 source "$ZINIT_HOME/zinit.zsh"
 
-# Prompt
-zinit snippet OMZP::starship
-
 # General plugins
 zinit snippet OMZP::git
 zinit light djui/alias-tips

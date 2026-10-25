@@ -79,4 +79,4 @@ if [[ -z $only && -d $repo_root/home ]]; then
   done < <(find "$repo_root/home" -type f -print0 | sort -z)
 fi
 
-printf '%s\n' 'Dotfiles linked. Run `mise install` for developer tools and `./scripts/bootstrap-nvim.sh` for Neovim.'
+printf '%s\n' 'Configuration links installed.'

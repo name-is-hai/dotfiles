@@ -10,26 +10,38 @@ log_info() { printf '[INFO] %s\n' "$*"; }
 die() { printf '[ERROR] %s\n' "$*" >&2; exit 1; }
 usage() {
   printf '%s\n' \
-    'Usage: setup-devcontainer.sh [--update] [CONFIG ...]' \
+    'Usage: setup-devcontainer.sh [--update] [--link-only] [CONFIG ...]' \
     'Defaults: nvim mise zsh tmux git' \
     'Available: fcitx5 ghostty git mise nvim tmux zed zsh' \
-    'Clones or reuses dotfiles and links selected configs, backing up conflicts.' \
+    'Clones dotfiles, links configs, and installs tools and selected plugins.' \
+    '--link-only skips tool installation and project trust.' \
     '--update fast-forwards an existing clean checkout on DOTFILES_BRANCH.' \
-    'Configure DOTFILES_REPO, DOTFILES_BRANCH, and DOTFILES_HOME as needed.'
+    'Configure DOTFILES_REPO, DOTFILES_BRANCH, and DOTFILES_HOME as needed.' \
+    'DOTFILES_PROJECT_DIR selects the project (default: current directory).'
 }
 
 update=0
+link_only=0
+project_dir=${DOTFILES_PROJECT_DIR:-$PWD}
 configs=()
 for arg in "$@"; do
   case $arg in
     -h|--help) usage; exit 0 ;;
     --update) update=1 ;;
+    --link-only) link_only=1 ;;
     fcitx5|ghostty|git|mise|nvim|tmux|zed|zsh) configs+=("$arg") ;;
     *) die "Unknown config or option: $arg (use --help)" ;;
   esac
 done
 if (( ${#configs[@]} == 0 )); then
   configs=(nvim mise zsh tmux git)
+fi
+if (( ! link_only )); then
+  [[ -d $project_dir ]] || die "Project directory does not exist: $project_dir"
+  # All runtime versions come from the repository's Mise config.
+  if [[ " ${configs[*]} " != *' mise '* ]]; then
+    configs+=(mise)
+  fi
 fi
 
 command -v git >/dev/null 2>&1 || die 'Install git in the container image first.'
@@ -79,6 +91,10 @@ fi
 
 # Check the entire selection before replacing any container configuration.
 [[ -f $DOTFILES_HOME/install.sh ]] || die "Missing $DOTFILES_HOME/install.sh"
+if (( ! link_only )); then
+  [[ -f $DOTFILES_HOME/scripts/bootstrap-devcontainer.sh ]] ||
+    die 'Runtime bootstrap is missing. Update the checkout or use --link-only.'
+fi
 for config in "${configs[@]}"; do
   [[ -d $DOTFILES_HOME/config/$config && -f $DOTFILES_HOME/scripts/install-$config.sh ]] ||
     die "Missing installer for $config. Commit and push the config installers, then update the checkout."
@@ -89,4 +105,9 @@ for config in "${configs[@]}"; do
   bash "$DOTFILES_HOME/scripts/install-$config.sh" --force
 done
 
-log_info 'Devcontainer configs linked. Install applications and plugins separately.'
+if (( link_only )); then
+  log_info 'Devcontainer configs linked.'
+else
+  bash "$DOTFILES_HOME/scripts/bootstrap-devcontainer.sh" "$project_dir" "${configs[@]}"
+  log_info 'Devcontainer setup complete. Your tools and selected plugins are ready.'
+fi
