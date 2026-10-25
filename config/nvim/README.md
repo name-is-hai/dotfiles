@@ -5,6 +5,15 @@ Mason language servers, Treesitter, and Conform formatting.
 
 ## Install or repair
 
+To link only this Neovim configuration to the current dotfiles checkout:
+
+```bash
+./scripts/install-nvim.sh
+```
+
+Use `--force` to back up and replace an existing separate config. To also install
+Neovim's tools, plugins, and parsers, follow the bootstrap instructions below.
+
 Install Mise and system prerequisites first. On Fedora:
 
 ```bash
