@@ -32,6 +32,8 @@ installs every configured language server, formatter, and parser. It waits for
 downloads and compilation and returns a nonzero exit code on failure. Rerunning
 it skips tools already at the configured versions and updates outdated parsers.
 Network access is required.
+The bootstrap skips Markview's documentation-only wiki submodule to avoid a
+large extra download hitting Neovim's package installation timeout.
 
 If either configuration directory exists separately from this repository, use
 `./scripts/bootstrap-nvim.sh --force` to back it up before replacing it with a

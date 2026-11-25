@@ -6,6 +6,16 @@ local function bootstrap()
     assert(vim.fn.executable(executable) == 1, "Missing executable: " .. executable)
   end
 
+  -- Markview's wiki is documentation, not a runtime dependency. Avoid its clone
+  -- consuming vim.pack's fixed async timeout. Scope this to the bootstrap's Git
+  -- subprocesses and preserve config entries inherited from the caller.
+  local git_config_count = tonumber(vim.env.GIT_CONFIG_COUNT or "0")
+  assert(git_config_count and git_config_count >= 0 and git_config_count % 1 == 0,
+    "GIT_CONFIG_COUNT must be a nonnegative integer")
+  vim.env["GIT_CONFIG_KEY_" .. git_config_count] = "submodule.markview.nvim.wiki.update"
+  vim.env["GIT_CONFIG_VALUE_" .. git_config_count] = "none"
+  vim.env.GIT_CONFIG_COUNT = tostring(git_config_count + 1)
+
   -- Restore locked plugins before sourcing their configuration, without prompts.
   vim.pack.add({}, { confirm = false, load = false })
   dofile(config .. "/init.lua")
