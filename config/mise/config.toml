@@ -1,9 +1,14 @@
+[alias.neovim]
+# Use release asset URLs instead of the vfox plugin's GitHub API lookup.
+backend = "aqua:neovim/neovim"
+
 [tools]
 # Neovim prerequisites; pin versions so fresh machines use the same toolchain.
 neovim = "0.12.6"
 node = "22.23.1"
 tree-sitter = "0.26.11"
 rust = { version = "1.99.0", profile = "minimal", components = "rustfmt" }
+uv = "latest"
 fd = "10.3.0"
 "github:jesseduffield/lazygit" = "latest"
 prek = "latest"

@@ -74,6 +74,10 @@ tar, unzip, a C compiler, make, Python 3, and Zsh when selected. The bootstrap i
 Mise if missing, trusts this checkout and the current project's Mise configs,
 and installs the selected configs' dependencies plus project tools. Host-only
 extras such as AI CLIs are skipped unless the project requests them.
+The bootstrap installs and exposes uv before project Python CLI tools such as
+Ansible, so the image does not need pipx. Projects that explicitly disable uv
+for the pipx backend still need to supply pipx themselves. Neovim uses the Aqua
+backend with the pinned version, avoiding the vfox plugin's release API lookup.
 It also completes the Neovim bootstrap,
 warms Zsh plugins, and installs TPM/plugins when those configs are selected.
 It waits for setup to finish and propagates failures instead of hiding them.

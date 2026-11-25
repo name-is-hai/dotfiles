@@ -40,6 +40,13 @@ cd "$project_dir"
 for config in mise.toml .mise.toml mise.local.toml .mise.local.toml; do
   [[ ! -f $config ]] || mise trust "$PWD/$config"
 done
+# The pipx backend uses uv when available. Install and expose it before project
+# tools (such as Ansible), rather than relying on pipx in the container image.
+mise install uv
+uv_executable=$(mise which uv)
+export PATH="$(dirname -- "$uv_executable"):$PATH"
+command -v uv >/dev/null || die 'Mise did not provide a usable uv executable.'
+
 # Install selected config dependencies and project tools, not host-only extras.
 tools=()
 if selected nvim; then
