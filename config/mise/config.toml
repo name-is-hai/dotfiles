@@ -1,4 +1,4 @@
-[alias.neovim]
+[tool_alias.neovim]
 # Use release asset URLs instead of the vfox plugin's GitHub API lookup.
 backend = "aqua:neovim/neovim"
 
