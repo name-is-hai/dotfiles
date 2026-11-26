@@ -40,12 +40,17 @@ cd "$project_dir"
 for config in mise.toml .mise.toml mise.local.toml .mise.local.toml; do
   [[ ! -f $config ]] || mise trust "$PWD/$config"
 done
-# The pipx backend uses uv when available. Install and expose it before project
-# tools (such as Ansible), rather than relying on pipx in the container image.
-mise install uv
-uv_executable=$(mise which uv)
-export PATH="$(dirname -- "$uv_executable"):$PATH"
-command -v uv >/dev/null || die 'Mise did not provide a usable uv executable.'
+# The pipx backend uses uv when available. Keep this container prerequisite
+# separate from the user's Mise tool configuration.
+if ! command -v uv >/dev/null; then
+  (
+    installer=$(mktemp)
+    trap 'rm -f -- "$installer"' EXIT
+    curl -fsSL https://astral.sh/uv/install.sh -o "$installer"
+    UV_INSTALL_DIR="$HOME/.local/bin" UV_NO_MODIFY_PATH=1 sh "$installer"
+  )
+fi
+command -v uv >/dev/null || die 'Container setup did not provide a usable uv executable.'
 
 # Install selected config dependencies and project tools, not host-only extras.
 tools=()

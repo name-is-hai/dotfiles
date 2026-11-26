@@ -32,6 +32,9 @@ installs every configured language server, formatter, and parser. It waits for
 downloads and compilation and returns a nonzero exit code on failure. Rerunning
 it skips tools already at the configured versions and updates outdated parsers.
 Network access is required.
+Node 24+ is required by the pinned Ansible language server. The bootstrap checks
+this before installing plugins and gives npm extra download retries for transient
+network errors, while preserving any npm retry settings supplied by the caller.
 The bootstrap skips Markview's documentation-only wiki submodule to avoid a
 large extra download hitting Neovim's package installation timeout.
 

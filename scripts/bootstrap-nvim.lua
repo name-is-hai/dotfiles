@@ -2,8 +2,25 @@ local function bootstrap()
   local config = assert(vim.env.DOTFILES_NVIM_CONFIG, "DOTFILES_NVIM_CONFIG is required")
   assert(vim.fn.has("nvim-0.12") == 1, "Neovim 0.12+ is required")
   vim.opt.runtimepath:prepend(config)
-  for _, executable in ipairs({ "git", "npm", "cc", "curl", "tar", "unzip", "tree-sitter", "rustfmt" }) do
+  for _, executable in ipairs({ "git", "node", "npm", "cc", "curl", "tar", "unzip", "tree-sitter", "rustfmt" }) do
     assert(vim.fn.executable(executable) == 1, "Missing executable: " .. executable)
+  end
+
+  local node = vim.system({ "node", "--version" }, { text = true }):wait(10000)
+  local node_major = tonumber((node.stdout or ""):match("^v(%d+)"))
+  assert(node.code == 0 and node_major and node_major >= 24,
+    "Node.js 24+ is required by ansible-language-server; rerun scripts/bootstrap-nvim.sh")
+
+  -- Apply download retries only to this bootstrap, preserving caller overrides.
+  for key, value in pairs({
+    npm_config_fetch_retries = "4",
+    npm_config_fetch_retry_mintimeout = "1000",
+    npm_config_fetch_retry_maxtimeout = "10000",
+    npm_config_fetch_timeout = "60000",
+  }) do
+    if vim.env[key] == nil and vim.env[key:upper()] == nil then
+      vim.env[key] = value
+    end
   end
 
   -- Markview's wiki is documentation, not a runtime dependency. Avoid its clone
